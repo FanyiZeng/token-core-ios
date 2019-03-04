@@ -9,7 +9,7 @@
 import Foundation
 import CoreBitcoin
 
-class EOSKey {
+public class EOSKey {
   private let btcKey: BTCKey
 
   var publicKey: String {
