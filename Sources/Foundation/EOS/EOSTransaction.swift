@@ -28,7 +28,6 @@ public final class EOSTransaction {
     toSign.append(data.tk_dataFromHexString()!)
     toSign.append(Data(bytes: [UInt8](repeating: 0, count: 32)))
     let hashedTx = BTCSHA256(toSign as Data) as Data
-    print("toSign:\(toSign)")
     let signs = try publicKeys.map { publicKey -> String in
       let key: EOSKey
       if let eosKeystore = keystore as? EOSKeystore {
@@ -39,7 +38,6 @@ public final class EOSTransaction {
         let wif = legacyKeystore.decryptWIF(password)
         key = EOSKey(wif: wif)
       }
-      print("signBase58:\(EOSTransaction.signatureBase58(data: key.sign(data: hashedTx)))")
       return EOSTransaction.signatureBase58(data: key.sign(data: hashedTx))
     }
     print("signResult:\(EOSSignResult(hash: hash, signs: signs))")

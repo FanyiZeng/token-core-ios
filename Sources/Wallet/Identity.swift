@@ -105,7 +105,7 @@ extension Identity {
     throw GenericError.importFailed
   }
 
-  func removeWallet(_ wallet: BasicWallet) -> Bool {
+  public func removeWallet(_ wallet: BasicWallet) -> Bool {
     if let index = keystore.walletIds.index(where: { return $0 == wallet.walletID }) {
       keystore.wallets.remove(at: index)
       keystore.walletIds.remove(at: index)
